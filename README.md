@@ -12,7 +12,7 @@ ___
 ### Server
 
 `/api/syncdb` Saves all data (starting from page two) to the DB that has appeard 
-in the bad-api since prevous sync (when called for the first time transfers all data). `Note` that  there is no process implemented that would call this automatically. I tested to send request to this endpoint every minute with task scheduler of powershell and it worked fine. So I guess in the hypothetical situation where this project would go to production there could be some cron job like process on the server. (Currently, as a quick fix, the endpoint is called every time the client is loaded so the data should be always up to date)
+in the bad-api since prevous sync (when called for the first time transfers all data). `Note` that  there is no process implemented that would call this automatically. I tested to send request to this endpoint every minute with task scheduler of powershell and it worked fine. So I guess in the hypothetical situation where this project would go to production there could be some cron job like process on the server. (Currently, as a quick fix, the endpoint is called every time the client is loaded so the data should always be up to date)
   
 `/api/players/<name>` Gets all the games played by the player. Fetches data stored in the db and combines this with the first result page data from bad-api (first page data isn't stored in the DB cause the page isn't finnished) 
 
