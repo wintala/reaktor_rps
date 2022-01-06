@@ -75,7 +75,7 @@ ___
 ___
 ## Possible improvements
 
-- create pipeline
+- creating pipeline
 
 - Impleting task scheduler to regularly update the DB 
 
