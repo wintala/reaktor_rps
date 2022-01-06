@@ -75,9 +75,9 @@ ___
 ___
 ## Possible improvements
 
-- creating pipeline
+- creating a pipeline
 
-- Impleting task scheduler to regularly update the DB 
+- Implemeting a task scheduler to regularly update the DB 
 
 - Make better structure for the DB (To improve performace it would be optimal to keep the calculated player statistics in the DB and send only a pageful of games to the client at once, compared to the current solution where all the palyer's games are sent to the client and claculations are done by the client. Although now it's nice and snappy to browse palyers historical games (after the initial load) when they are all in memory)
 
