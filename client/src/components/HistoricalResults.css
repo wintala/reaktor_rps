@@ -1,0 +1,58 @@
+
+#history-wrap{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+
+#history-wrap h4 {
+	margin-bottom: 0;
+}
+
+#player-list {
+	list-style-type: none;
+	padding: 0px;
+	width: 300px;
+}
+
+#player-list li {
+	padding: 5px 15px;
+	background-color: rgb(255, 215, 200);
+	font-weight: 500;
+	cursor: pointer;
+}
+
+#player-list li:hover {
+	color: white;
+}
+
+#player-list li:nth-child(odd) {
+	background-color: rgb(252, 227, 220);
+}
+.loading {
+	margin-top: 50px;
+	font-weight: bold;
+}
+
+#player-filter {
+	margin-top: 10px;
+	padding: 3px;
+}
+
+.pagination-button-wrap button{
+	background-color: rgb(220, 220, 220);
+	outline: none;
+	border: none;
+	width: 30px;
+	height: 30px;
+	line-height: 24px;
+	text-align: center;
+	margin: 3px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+
+.pagination-button-wrap .current-page-button {
+	background-color: rgb(160, 160, 160);
+}

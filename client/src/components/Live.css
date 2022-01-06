@@ -1,0 +1,79 @@
+
+#banner {
+  background-color: rgb(0, 0, 68);
+  padding: 30px;
+  color: white;
+}
+
+#banner h1 {
+  font-weight: 600;
+  text-align: center;
+  font-size: 50px;
+  margin: 0px;
+}
+
+#banner h3 {
+  text-align: center;
+  margin: 0px;
+  font-weight: 500;
+}
+
+.result-list-header {
+  padding-left: 30px;
+}
+
+.result-list {
+  min-height: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  list-style-type: none;
+  margin-left: 10px;
+  padding: 0; 
+}
+
+
+.result-list li{
+  width: 250px;
+  height: 200px;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.result-list li > div{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ongoing-list li > img{
+  height: 60px;
+  animation: spin 3s linear infinite;
+  margin: 20px;
+} 
+
+@keyframes spin {
+  0%{transform: rotate(0deg)}
+  0%{transform: rotate(360deg)}
+}
+
+.finnish-list li > div{
+  height: 50%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+.finnish-list li > div > span:first-child{
+  padding: 0 20px;
+}
+
+.finnish-list li img{
+  height: 40px;
+}

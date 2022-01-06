@@ -1,0 +1,93 @@
+
+:root {
+  --statistics-wrap-heigth: 400px;
+	--statistics-wrap-width: 600px
+}
+
+
+#player-statistics-wrap {
+	position: fixed;
+	width: var(--statistics-wrap-width);
+	height: var(--statistics-wrap-heigth);
+	top: calc(50vh - var(--statistics-wrap-heigth) / 2);
+	left: calc(50vw - var(--statistics-wrap-width) / 2);
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	overflow-y: scroll;
+}
+
+.statistics-loading-image {
+	margin: 10px;
+	margin-top: 70px;
+	height: 50px;
+	animation: spin 1s linear infinite;
+}
+
+#statistics-loading-text {
+	font-weight: 700;
+}
+
+.statistics-loading-image:nth-child(odd) {
+	animation: spin 1s linear infinite reverse;
+}
+
+#option-buttons-wrap {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#option-buttons-wrap button{
+	outline: none;
+	border: none;
+	background-color: rgb(0, 212, 11);
+	margin: 10px 5px;
+	color: white;
+	padding: 5px;
+	width: 100px;
+	border-radius: 100px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#option-buttons-wrap button:hover {
+	background-color: rgb(0, 102, 5);
+}
+
+#player-statistics-wrap table {
+ border-collapse: collapse;
+ width: 500px;
+ text-transform:capitalize;
+}
+
+#player-statistics-wrap table tr {
+	background-color: rgb(200, 200, 255);
+}
+
+#player-statistics-wrap table tr:nth-child(odd) {
+	background-color: rgb(225, 225, 255);
+}
+
+#player-statistics-wrap table tr td {
+	padding: 10px;
+}
+
+#player-statistics-wrap table tr td img{
+	height: 40px;
+}
+
+#player-statistics-wrap table tr td:first-child {
+	font-weight: 500;
+}
+
+#player-statistics-wrap table tr th {
+	color: white;
+	background-color: black;
+	padding: 5px;
+	padding-left: 10px;
+	text-align: left;
+}
