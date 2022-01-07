@@ -2,18 +2,17 @@ import { useState } from "react"
 import service from "../service";
 import PlayerResults from "./PlayerResults";
 import "./HistoricalResults.css"
-import { useEffect } from "react";
+import useApiCall from "../hooks/useApiCall";
 
 const HistoricalResults = () => {
-	const [players, setPlayers] = useState(null)
+	const [players, loading, error] = useApiCall(() => service.getPlayerNames())
 	const [selectedPlayer, setSelectedPlayer] = useState(null)
 	const [searchFilter, setSearchFilter] = useState("")
 
-	useEffect(() => {
-     service.getPlayerNames()
-		.then(data => setPlayers(data))
-		.catch(e => alert(`Error occured while fetching playernames: ${e}`))
-  }, [])
+	if (error) {
+		alert(error)
+		return(null)
+	}
 
 	return(
 		<>
@@ -27,7 +26,7 @@ const HistoricalResults = () => {
 		</div>
 
 		<div id="history-wrap" onClick={() => selectedPlayer ? setSelectedPlayer(null) : null}>
-			{players ?
+			{!loading ?
 			<>
 			<input
 					id="player-filter"

@@ -44,7 +44,6 @@ const Live = () => {
         break;
       case WebSocket.CLOSED:
         console.log("Failed to connect WS")
-        alert("Connection to WebSocket failed for unknown reason")
         break; 
       default:
         break;

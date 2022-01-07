@@ -1,44 +1,32 @@
 import { useEffect, useState } from "react";
-import {rpsResult, iconMapping} from "../util";
+import {rpsResult, iconMapping, constructPlayerStatistics} from "../util";
 import GenericTable from "./GenericTabel";
 import "./PlayerResults.css";
 import service from "../service"
 import PaginationButtons from "./PaginationButtons";
+import useApiCall from "../hooks/useApiCall";
+import useListPagination from "../hooks/useListPagination";
 
 const PlayerResults = ({name}) => {
+	const [results, loading, error] = useApiCall(() => service.getHistoricalResults(name))
 	const [statistics, setStatistics] = useState(null)
 	const [showing, setShowing] = useState("summary")
-	const [page, setPage] = useState(1)
-	const gamesPerPage = 100
+
+	const itemsPerPage = 100
+	const [paginate, page, setPage] = useListPagination(itemsPerPage)
 
 	useEffect(() => {
-		service.getHistoricalResults(name)
-		.then(d => {
-			const games = d.map(g => g.playerA.name === name ? g : {...g, playerA: g.playerB, playerB: g.playerA}).sort((g) => g.t) // setting playerA to be always the player of interest
-			const wins = games.filter(g => rpsResult(g.playerA.played, g.playerB.played) === "win").length
-			
-			const countHand = (hand) => games.filter(g => g.playerA.played === hand).length
+		if (results) {
+			setStatistics(constructPlayerStatistics(results))
+		}
+	}, [results])
 
-			const playerHands = {
-				SCISSORS: countHand("SCISSORS"),
-				ROCK: countHand("ROCK"),
-				PAPER: countHand("PAPER")
-			}
+	if (error) {
+		alert(error)
+ 		return null
+	}
 
-			const keyWithHighestValue = (obj) => Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
-
-			setStatistics({
-				games,
-				nGames: games.length,
-				wins,
-				favoriteHand: keyWithHighestValue(playerHands),
-				favoriteHandUsage: playerHands[keyWithHighestValue(playerHands)]
-			})
-		})
-		.catch(e => alert(`Error occured while fetching player ${name} information: ${e}`))
-	}, [name])
-
-	if(!statistics) {
+	if(loading) {
 		return(
 			<div id="player-statistics-wrap">
 				<h1>{name} statistics</h1>
@@ -61,15 +49,13 @@ const PlayerResults = ({name}) => {
 	]
 
 	const gamesTableContents = [["Opponent", `${name.split(" ")[0]}'s hand`, "Opponents hand", "Day", "Result"]]
-	.concat(
-		statistics.games.slice((page - 1) * gamesPerPage, page * gamesPerPage).map(g => [
+		.concat(paginate(results).map(g => [
 			g.playerB.name, 
 			<img src={iconMapping[g.playerA.played]} alt="hand"></img>, 
 			<img src={iconMapping[g.playerB.played]} alt="hand"></img>,
 			new Date(g.t).toDateString(),
 			rpsResult(g.playerA.played, g.playerB.played)
-		])
-	)
+		]))
 
 	const content = () => {
 		switch (showing) {
@@ -79,14 +65,14 @@ const PlayerResults = ({name}) => {
 				return (
 					<>
 						<PaginationButtons 
-							nPages={Math.ceil(statistics.nGames / gamesPerPage)} 
+							nPages={Math.ceil(statistics.nGames / itemsPerPage)} 
 							currentPage={page} 
 							changePageFunc={setPage} 
 							className={"pagination-button-wrap"}
 						/>
 						<GenericTable tableArray={gamesTableContents} firstRowHeader={true}/>
 						<PaginationButtons 
-							nPages={Math.ceil(statistics.nGames / gamesPerPage)} 
+							nPages={Math.ceil(statistics.nGames / itemsPerPage)} 
 							currentPage={page} 
 							changePageFunc={setPage} 
 							className={"pagination-button-wrap"}

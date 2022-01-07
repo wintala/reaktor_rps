@@ -17,7 +17,7 @@ const App = () => {
   useEffect(() => {
     service.syncDB()
     .then(_ => console.log("DB synced"))
-    .catch(e => console.log("DB sync failed"))
+    .catch(e => console.log(`DB sync failed. ${e}`))
     // since there is no automated cron job like task, db is synced every time client session is started 
     // (this will obviosly take unacceptable amount of time if the last sycn has happened long time ago)
   }, [])

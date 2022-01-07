@@ -3,6 +3,18 @@ import rock from "./icons/rock.png"
 import paper from "./icons/paper.png"
 import scissors from "./icons/scissors.png"
 
+const iconMapping = {
+	SCISSORS: scissors,
+	ROCK: rock,
+	PAPER: paper
+}
+
+const colorMapping = {
+	"win": "rgb(128, 255, 128)",
+	"lose": "rgb(255, 118, 118)",
+	"tie": "rgb(168, 168, 168)"
+}
+
 const rpsResult = (player, opponent) => {
 	switch (true) {
 		case (player === opponent):
@@ -18,19 +30,45 @@ const rpsResult = (player, opponent) => {
 	}
 }
 
-const iconMapping = {
-	SCISSORS: scissors,
-	ROCK: rock,
-	PAPER: paper
+const constructPlayerStatistics = (results, name) => {
+
+	let statistics = {
+		nGames: results.length,
+		wins: 0,
+		hands: {
+			ROCK: 0,
+			SCISSORS: 0,
+			PAPER: 0
+		}
+	}
+
+	const handelResult = (r) => {
+		const player = r.playerA.name === name ? r.playerA : r.playerB 
+		const opponent = r.playerA.name === name ? r.playerB : r.playerA 
+
+		return({
+			win: rpsResult(player.played, opponent.played) === "win",
+			hand: player.played
+		})	
+	}
+
+	results.forEach((r) => {
+		const summary = handelResult(r)
+		statistics.wins += summary.win
+		statistics.hands[summary.hand] += 1
+	})
+
+	const keyWithHighestValue = (obj) => Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
+
+	statistics.favoriteHand = keyWithHighestValue(statistics.hands)
+	statistics.favoriteHandUsage = statistics.hands[statistics.favoriteHand]
+
+	return statistics
 }
 
-const colorMapping = {
-	"win": "rgb(128, 255, 128)",
-	"lose": "rgb(255, 118, 118)",
-	"tie": "rgb(168, 168, 168)"
-}
 
 
 export {iconMapping}
 export {colorMapping}
 export {rpsResult}
+export {constructPlayerStatistics}
