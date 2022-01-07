@@ -63,12 +63,7 @@ I felt like React with JS + Flask + Mongo was good combo to do something quick a
 
 ___
 ## Possible improvements
-<<<<<<< HEAD
-- Impleting task scheduler to regularly update the DB 
-=======
-
 - creating a pipeline
->>>>>>> 8c1585e10e0f3b88dfca5215244f22ff6c7ec2e5
 
 - Implemeting a task scheduler to regularly update the DB 
 
@@ -77,6 +72,5 @@ ___
 - Improve error handling
 
 - support mobile
-
 
 
