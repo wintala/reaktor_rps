@@ -16,7 +16,7 @@ ___
 
 ### Server
 `/api/syncdb` Saves all data (starting from page two) to the DB that has appeard 
-in the bad-api since prevous sync (when called for the first time transfers all data). `Note` that  there is no process implemented that would call this automatically. I tested to send request to this endpoint every minute with task scheduler of powershell and it worked fine. So I guess in the hypothetical situation where this project would go to production there could be some cron job like process on the server. 
+in the bad-api since prevous sync (when called for the first time transfers all data). `Note` that  there is no process implemented that would call this automatically. I tested to send request to this endpoint every minute with task scheduler of powershell and it worked fine. So I guess in the hypothetical situation where this project would go to production there could be some cron job like process on the server. (Currently, as a quick fix, the endpoint is called every time the client is loaded so the data should always be up to date)
   
 `/api/players/<name>` Gets all the games played by the player. Fetches data stored in the db and combines this with the first result page data from bad-api (first page data isn't stored in the DB cause the page isn't finnished) 
 
@@ -63,9 +63,16 @@ I felt like React with JS + Flask + Mongo was good combo to do something quick a
 
 ___
 ## Possible improvements
+<<<<<<< HEAD
 - Impleting task scheduler to regularly update the DB 
+=======
 
-- Make better structure for the DB (To improve performace it would be optimal to keep the calculated player statistics in the DB and send only a pageful of games to the client at once, compared to the current solution where all the palyer's games are sent to the client and claculations are done by the client. Although now it's nice and snappy to browse palyers historical games (after the initial load) when they are all in memory)
+- creating a pipeline
+>>>>>>> 8c1585e10e0f3b88dfca5215244f22ff6c7ec2e5
+
+- Implemeting a task scheduler to regularly update the DB 
+
+- Make better structure for the DB (To improve performace it would be optimal to keep the calculated player statistics in the DB and send only a pageful of games to the client at once, compared to the current solution where all the player's games are sent to the client and claculations are done by the client. Although now it's nice and snappy to browse player's historical games (after the initial load) when they are all in memory)
 
 - Improve error handling
 
