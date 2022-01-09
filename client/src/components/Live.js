@@ -6,14 +6,17 @@ import {rpsResult, colorMapping, iconMapping} from "../util";
 
 
 const Live = () => {
-	const [games, setGames] = useState({onGoing: [], finnished: []})
+  const [games, setGames] = useState({onGoing: [], finnished: []})
   const socket = useRef(null)
   const showLastNResults = 5
 
   useEffect(() => {
     socket.current = new WebSocket("wss://bad-api-assignment.reaktor.com/rps/live")
 
-    socket.current.addEventListener('message', function (event) {
+    socket.current.addEventListener('open', () => console.log("Connected to WS"))
+    socket.current.addEventListener('error', (e) => console.log("Failed connecting WS"))
+
+    socket.current.addEventListener('message', (event) => {
       const phase = JSON.parse(JSON.parse(event.data)) // https://stackoverflow.com/questions/42494823/json-parse-returns-string-instead-of-object
 
       if (phase.type === "GAME_BEGIN") {
@@ -31,24 +34,7 @@ const Live = () => {
       }
     })
     return(() => socket.current.close())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  useEffect(() => {
-    switch (socket.current.readyState) {
-      case WebSocket.CONNECTING:
-        console.log("Connecting WS")
-        break;
-      case WebSocket.OPEN:
-        console.log("Successfully connnected WS")
-        break;
-      case WebSocket.CLOSED:
-        console.log("Failed to connect WS")
-        break; 
-      default:
-        break;
-    }
-  })
 
   return(
     <div>

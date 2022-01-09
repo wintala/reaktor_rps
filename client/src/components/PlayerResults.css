@@ -23,15 +23,26 @@
 	margin: 10px;
 	margin-top: 70px;
 	height: 50px;
+	width: 50px;
 	animation: spin 1s linear infinite;
+	background-color: rgb(0, 212, 11);
+	border: 10px solid rgb(0, 212, 11);
+	border-radius: 100%;
 }
 
 #statistics-loading-text {
 	font-weight: 700;
 }
 
-.statistics-loading-image:nth-child(odd) {
+.statistics-loading-image:nth-child(2) {
 	animation: spin 1s linear infinite reverse;
+	background-color: rgb(200, 200, 255);
+	border: 10px solid rgb(200, 200, 255);
+}
+
+.statistics-loading-image:nth-child(3) {
+	background-color: tomato;
+	border: 10px solid tomato;
 }
 
 #option-buttons-wrap {

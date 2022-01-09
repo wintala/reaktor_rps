@@ -63,5 +63,5 @@ def sync_db_with_bad_api():
             print(e)
             break
 
-    return {"Message": "Sync successful"}
+    return {"message": "Sync successful"}
 

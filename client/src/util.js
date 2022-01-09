@@ -66,9 +66,26 @@ const constructPlayerStatistics = (results, name) => {
 	return statistics
 }
 
+const logWSInfo = (socket) => {
+	switch (socket.readyState) {
+		case WebSocket.CONNECTING:
+			console.log("Connecting WS")
+			break;
+		case WebSocket.OPEN:
+			console.log("Connnected to WS")
+			break;
+		case WebSocket.CLOSED:
+			console.log("Failed to connect WS")
+			break; 
+		default:
+			break;
+	}
+}
+
 
 
 export {iconMapping}
 export {colorMapping}
 export {rpsResult}
 export {constructPlayerStatistics}
+export {logWSInfo}

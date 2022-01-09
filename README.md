@@ -3,7 +3,7 @@
 ## Overview
 My solution consist of Flask backend connected to Mongodb (cloud hosted atlas) and React client. The backend fetches data from the bad-api and saves it in the DB making it possible to do queries on data and serve only the necessary data to the client in a reasonable time (a possibility that bad-api doesn't offer). The client communicates directly with the bad-api's websocket and fetches historical results through the custom backend. 
 
-The app is running [here](https://reaktorrpsserver.herokuapp.com/) (be patient with load times, heroku free tier combined with mongo atlas free tier doesn't offer very good performance. The server also sleeps when it's inactive, so esepicially the initial load time can be long)
+The app is running [here](https://reaktorrockpapersciccors.herokuapp.com) (be patient with load times, heroku free tier combined with mongo atlas free tier doesn't offer very good performance. The server also sleeps when it's inactive, so especially the initial load time can be long)
 ___
 
 ## Running the app locally 

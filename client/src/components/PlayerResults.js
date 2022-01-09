@@ -31,16 +31,16 @@ const PlayerResults = ({name}) => {
 			<div id="player-statistics-wrap">
 				<h1>{name} statistics</h1>
 				<div>
-					<img className="statistics-loading-image" src={iconMapping.ROCK} alt="rpsimage"></img>,
-					<img className="statistics-loading-image" src={iconMapping.SCISSORS} alt="rpsimage"></img>,
-					<img className="statistics-loading-image" src={iconMapping.PAPER} alt="rpsimage"></img>,
+					<img className="statistics-loading-image" src={iconMapping.ROCK} alt="rpsimage"></img>
+					<img className="statistics-loading-image" src={iconMapping.SCISSORS} alt="rpsimage"></img>
+					<img className="statistics-loading-image" src={iconMapping.PAPER} alt="rpsimage"></img>
 				</div>
 				<div id="statistics-loading-text">Loading...</div>
 			</div>	
 		)
 	}
 
-	const summarytableContents = [
+	const summaryTableContents = [
 		["Games played", statistics.nGames],
 		["Wins", statistics.wins],
 		["Win ratio", `${(statistics.wins / statistics.nGames * 100).toPrecision(4)}%`],
@@ -60,7 +60,7 @@ const PlayerResults = ({name}) => {
 	const content = () => {
 		switch (showing) {
 			case "summary":
-				return <GenericTable tableArray={summarytableContents} cl firstRowHeader={false}/>
+				return <GenericTable tableArray={summaryTableContents} cl firstRowHeader={false}/>
 			case "games":
 				return (
 					<>
